@@ -1,6 +1,6 @@
 {
-  "name": "react-native-sendgrid",
-  "version": "1.0.2",
+  "name": "react-native-sendgrid-template",
+  "version": "1.0.0",
   "description": "Is a API Wrapper to send emails using SendGrid",
   "main": "index.js",
   "scripts": {

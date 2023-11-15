@@ -1,13 +1,13 @@
 const CONFIG = {
-    SENDGRIDURL:"https://api.sendgrid.com/v3/mail/send"
+    SENDGRIDURL: "https://api.sendgrid.com/v3/mail/send"
 }
 
-function sendGridEmail(key, to, from, subject, body, type="text/plain"){
-    const isSuccess = sendEmail(key, to, from, subject, body, type);
+function sendGridEmail(key, to, from, subject, template_id, body, type = "text/plain") {
+    const isSuccess = sendEmail(key, to, from, subject, template_id, body, type);
     return isSuccess;
 }
 
-function sendEmail(key, to, from, subject, body, type) { 
+function sendEmail(key, to, from, subject, template_id, body, type) {
     return fetch(CONFIG.SENDGRIDURL, {
         method: 'POST',
         headers: {
@@ -17,28 +17,24 @@ function sendEmail(key, to, from, subject, body, type) {
         },
         body: JSON.stringify({
             "personalizations": [
-              {
-                "to": [
-                  {
-                    "email": to
-                  }
-                ],
-                "subject": subject
-              }
+                {
+                    "to": [
+                        {
+                            "email": to
+                        }
+                    ],
+                    "subject": subject, "dynamic_template_data": {},
+
+                }
             ],
             "from": {
-              "email": from
+                "email": from
             },
-            "content": [
-              {
-                "type": type,
-                "value": body
-              }
-            ]
-          }),
+            "template_id": template_id
+        }),
     }).then((response) => {
         return true;
-    }).catch((error) =>{
+    }).catch((error) => {
         return false;
     });
 }
