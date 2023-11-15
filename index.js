@@ -33,8 +33,10 @@ function sendEmail(key, to, from, subject, template_id, body, type) {
             "template_id": template_id
         }),
     }).then((response) => {
+        console.log(response)
         return true;
     }).catch((error) => {
+        console.log(error)
         return false;
     });
 }
